@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Paquete</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Registrar Nuevo Paquete</h2>
+    <div class="mb-3">
+        <input type="text" id="codigo" class="form-control" placeholder="Código de rastreo">
+    </div>
+    <div class="mb-3">
+        <input type="text" id="cliente" class="form-control" placeholder="Nombre del cliente">
+    </div>
+    <div class="mb-3">
+        <input type="text" id="direccion" class="form-control" placeholder="Dirección de entrega">
+    </div>
+    <div class="mb-3">
+        <input type="text" id="estado" class="form-control" placeholder="Estado del paquete (opcional)">
+    </div>
+    <button onclick="registrarPaquete()" class="btn btn-success">Registrar</button>
+
+    <div id="mensaje" class="mt-4"></div>
+</div>
+
+<script>
+function registrarPaquete() {
+    const codigo = document.getElementById('codigo').value;
+    const cliente = document.getElementById('cliente').value;
+    const direccion = document.getElementById('direccion').value;
+    const estado = document.getElementById('estado').value;
+
+    fetch('api.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ codigo, cliente, direccion, estado })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('mensaje').innerHTML = `<div class='alert alert-info'>${data.mensaje}</div>`;
+    });
+}
+</script>
+</body>
+</html>
