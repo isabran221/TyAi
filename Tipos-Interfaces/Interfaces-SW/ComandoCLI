@@ -1,0 +1,3 @@
+ls -la   # Lista archivos en Linux
+cd /home/user  # Cambia de directorio
+git clone https://github.com/user/repo.git  # Clona un repositorio
